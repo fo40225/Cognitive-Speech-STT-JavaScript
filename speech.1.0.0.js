@@ -1,8 +1,8 @@
 //----------------------------------------------------------------------
 // Microsoft Speech SDK
 // ====================
-// 
-// 
+//
+//
 // FEATURES
 // --------
 // * Short-form recognition.
@@ -10,14 +10,14 @@
 // * Recognition with intent.
 // * Integrated microphone support.
 // * External audio support.
-// 
+//
 // LICENSE
 // -------
-// © 2015 Microsoft. All rights reserved.  
-// This document is provided “as-is”. Information and views expressed in this document, including URL and other Internet Web site references, may change without notice.  
-// Some examples depicted herein are provided for illustration only and are fictitious.  No real association or connection is intended or should be inferred. 
-// This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes. This 
-// document is confidential and proprietary to Microsoft. It is disclosed and can be used only pursuant to a non-disclosure agreement. 
+// © 2015 Microsoft. All rights reserved.
+// This document is provided “as-is”. Information and views expressed in this document, including URL and other Internet Web site references, may change without notice.
+// Some examples depicted herein are provided for illustration only and are fictitious.  No real association or connection is intended or should be inferred.
+// This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes. This
+// document is confidential and proprietary to Microsoft. It is disclosed and can be used only pursuant to a non-disclosure agreement.
 //----------------------------------------------------------------------
 
 var Microsoft;
@@ -70,7 +70,7 @@ var Microsoft;
                 };
                 return MicrophoneRecognitionClient;
             })();
-            SpeechRecognition.MicrophoneRecognitionClient = MicrophoneRecognitionClient;            
+            SpeechRecognition.MicrophoneRecognitionClient = MicrophoneRecognitionClient;
             var DataRecognitionClient = (function () {
                 function DataRecognitionClient(prefs) {
                     this.onPartialResponseReceived = null;
@@ -113,7 +113,7 @@ var Microsoft;
                 };
                 return DataRecognitionClient;
             })();
-            SpeechRecognition.DataRecognitionClient = DataRecognitionClient;            
+            SpeechRecognition.DataRecognitionClient = DataRecognitionClient;
             (function (SpeechRecognitionServiceFactory) {
                 function createDataClient(speechRecognitionMode, language, primaryKey, secondaryKey) {
                     return new SpeechRecognition.DataRecognitionClient(createPrefs(speechRecognitionMode, language, primaryKey, secondaryKey));
@@ -140,7 +140,7 @@ var Microsoft;
                 SpeechRecognitionServiceFactory.BaseSpeechUrl = "https://websockets.platform.bing.com/ws/speech/recognize";
                 function createPrefs(speechRecognitionMode, language, primaryKey, secondaryKey) {
                     var serviceUri = SpeechRecognitionServiceFactory.BaseSpeechUrl;
-                    switch(speechRecognitionMode) {
+                    switch (speechRecognitionMode) {
                         case SpeechRecognition.SpeechRecognitionMode.longDictation:
                             serviceUri += "/continuous";
                             break;
@@ -242,7 +242,7 @@ var Bing;
                     _this.voices = [];
                     if (request.status === 200) {
                         var list = handleJSONWebResponse(request);
-                        for(var i = 0; i < list.length; ++i) {
+                        for (var i = 0; i < list.length; ++i) {
                             var vox = {
                                 voiceURI: "https://speech.platform.bing.com/synthesize",
                                 name: list[i].Name,
@@ -330,7 +330,7 @@ var Bing;
         };
         return Synthesis;
     })();
-    Bing.Synthesis = Synthesis;    
+    Bing.Synthesis = Synthesis;
     var msSpeechSynthesisUtterance = (function () {
         function msSpeechSynthesisUtterance(text) {
             this.text = text;
@@ -343,7 +343,7 @@ var Bing;
             return false;
         };
         return msSpeechSynthesisUtterance;
-    })();    
+    })();
     var Speech = (function () {
         function Speech() {
             this._firstAudio = true;
@@ -497,10 +497,10 @@ var Bing;
                 }
                 if (_this.playbackAudioFiles() && !_this.isMicSource) {
                     var outputBuffer = e.outputBuffer;
-                    for(var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
+                    for (var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
                         var outputData = outputBuffer.getChannelData(channel);
                         var inputData = inputBuffer.getChannelData(channel);
-                        for(var sample = 0; sample < e.inputBuffer.length; sample++) {
+                        for (var sample = 0; sample < e.inputBuffer.length; sample++) {
                             outputData[sample] = inputData[sample];
                         }
                     }
@@ -526,7 +526,7 @@ var Bing;
         };
         return Speech;
     })();
-    Bing.Speech = Speech;    
+    Bing.Speech = Speech;
     ;
     var Task = (function () {
         function Task() {
@@ -562,7 +562,7 @@ var Bing;
         };
         return Task;
     })();
-    Bing.Task = Task;    
+    Bing.Task = Task;
     var StringAudioBuffer = (function () {
         function StringAudioBuffer(buffer) {
             this._audioBuffer = buffer;
@@ -577,9 +577,9 @@ var Bing;
             var ret;
             var i;
             var byteStr;
-            for(i = 0; i < data.length; ++i) {
+            for (i = 0; i < data.length; ++i) {
                 byteStr = Math.floor((data[i] + 1.0) * 0x7fff).toString(16).replace('-', '');
-                while(byteStr.length < 4) {
+                while (byteStr.length < 4) {
                     byteStr = "0" + byteStr;
                 }
                 a.push(byteStr);
@@ -595,9 +595,9 @@ var Bing;
         };
         return StringAudioBuffer;
     })();
-    Bing.StringAudioBuffer = StringAudioBuffer;    
+    Bing.StringAudioBuffer = StringAudioBuffer;
     function CreateActiveXObject(name) {
-        try  {
+        try {
             return new ActiveXObject(name);
         } catch (e) {
             return null;
@@ -652,7 +652,7 @@ var Bing;
     function initialize() {
         var i;
         Bing._window.useStringArrays = false;
-        var s =  createSpeech();
+        var s = createSpeech();
         if (s) {
             Bing._cu = s;
         }
@@ -660,7 +660,7 @@ var Bing;
             Bing._cuDeferred = [];
         }
         if (Bing._cu) {
-            for(i = 0; i < Bing._cuDeferred.length; ++i) {
+            for (i = 0; i < Bing._cuDeferred.length; ++i) {
                 Bing._cuDeferred[i].resolve(Bing._cu);
             }
         }
@@ -688,11 +688,11 @@ var Bing;
             var task = new Task();
             var now = Date.now();
             var params = [
-                "grant_type=client_credentials&client_id=", 
-                encodeURIComponent(primaryKey), 
-                "&client_secret=", 
-                encodeURIComponent(secondaryKey), 
-                "&scope=", 
+                "grant_type=client_credentials&client_id=",
+                encodeURIComponent(primaryKey),
+                "&client_secret=",
+                encodeURIComponent(secondaryKey),
+                "&scope=",
                 encodeURIComponent("https://speech.platform.bing.com")
             ].join("");
             if (!this._response || !this._expireTime || Date.now() >= this._expireTime.getTime()) {
@@ -722,7 +722,7 @@ var Bing;
             return task;
         };
         return OxfordAuthenticator;
-    })();    
+    })();
     var AdmAuthenticator = (function () {
         function AdmAuthenticator() {
         }
@@ -749,7 +749,7 @@ var Bing;
             return task;
         };
         return AdmAuthenticator;
-    })();    
+    })();
     var Riff = (function () {
         function Riff(sampleRate, bitsPerSample) {
             this._buffer = [];
@@ -774,7 +774,7 @@ var Bing;
         Riff.WAVE_FORMAT_PCM = 1;
         Riff.WAVE_FORMAT_IEEE_FLOAT = 3;
         Riff.prototype.appendString = function (s) {
-            for(var i = 0; i < s.length; ++i) {
+            for (var i = 0; i < s.length; ++i) {
                 this._buffer.push(s.charCodeAt(i));
             }
         };
@@ -790,11 +790,11 @@ var Bing;
             return this._buffer;
         };
         return Riff;
-    })();    
+    })();
     var LuisClient = (function () {
         function LuisClient(prefs) {
             this._prefs = prefs;
-            switch(prefs.authenticationScheme) {
+            switch (prefs.authenticationScheme) {
                 case "MAIS":
                     this._auth = new OxfordAuthenticator();
                     break;
@@ -808,11 +808,11 @@ var Bing;
             var task = new Task();
             var request = new XMLHttpRequest();
             request.open('GET', [
-                LuisClient.kServiceUrl, 
-                this._prefs.luisSubscriptionId, 
-                "&id=", 
-                this._prefs.luisAppId, 
-                "&q=", 
+                LuisClient.kServiceUrl,
+                this._prefs.luisSubscriptionId,
+                "&id=",
+                this._prefs.luisAppId,
+                "&q=",
                 text
             ].join(""), true);
             request.onload = function () {
@@ -828,13 +828,13 @@ var Bing;
         };
         return LuisClient;
     })();
-    Bing.LuisClient = LuisClient;    
+    Bing.LuisClient = LuisClient;
     var HTTPResultStatus = (function () {
         function HTTPResultStatus() { }
         HTTPResultStatus.SUCCESS = "success";
         HTTPResultStatus.ERROR = "error";
         return HTTPResultStatus;
-    })();    
+    })();
     var HttpClient = (function () {
         function HttpClient() {
             this.queue = [];
@@ -934,7 +934,7 @@ var Bing;
         HttpClient.prototype.ttsStop = function () {
             var src = this.ttsSource;
             if (src && this.context.state != "suspended") {
-                try  {
+                try {
                     src.stop();
                 } catch (e) {
                     writeline("ttsStop: buffer source failed to stop. state: " + this.context.state + " exception:" + e);
@@ -943,7 +943,7 @@ var Bing;
         };
         HttpClient.prototype.getToken = function () {
             if (!this.auth) {
-                switch(this.preferences.authenticationScheme) {
+                switch (this.preferences.authenticationScheme) {
                     case "MAIS":
                         this.auth = new OxfordAuthenticator();
                         break;
@@ -966,11 +966,11 @@ var Bing;
                 writeline("connect: url " + serviceUrl);
                 var request = new XMLHttpRequest();
                 request.open('POST', [
-                    serviceUrl, 
-                    _this.requestUri, 
-                    "&locale=", 
-                    _this.preferences.locale, 
-                    "&format=", 
+                    serviceUrl,
+                    _this.requestUri,
+                    "&locale=",
+                    _this.preferences.locale,
+                    "&format=",
                     _this.responseFormat
                 ].join(""), true);
                 request.responseType = _this.responseFormat;
@@ -1014,7 +1014,7 @@ var Bing;
             }
             if (this.onresult) {
                 var phrases = [];
-                for(var i = 0; i < result.results.length; ++i) {
+                for (var i = 0; i < result.results.length; ++i) {
                     var r = result.results[i];
                     phrases.push({
                         lexical: r.lexical,
@@ -1050,7 +1050,7 @@ var Bing;
             }
             this.buffer = newBuffer;
             var incrementBy = this.sourceSampleRate / this.sampleRate;
-            for(var i = 0; i < a.length; i += incrementBy) {
+            for (var i = 0; i < a.length; i += incrementBy) {
                 this.buffer[this.offset++] = Math.floor((a[Math.floor(i)] - .5) * 128);
             }
         };
@@ -1078,7 +1078,7 @@ var Bing;
         };
         return HttpClient;
     })();
-    Bing.HttpClient = HttpClient;    
+    Bing.HttpClient = HttpClient;
     var NaclClient = (function () {
         function NaclClient() {
             var _this = this;
@@ -1090,7 +1090,7 @@ var Bing;
                 naclContainer.addEventListener('load', function (arg) {
                     var i;
                     writeline("plugin load:" + arg);
-                    for(i = 0; i < Bing._cuDeferred.length; ++i) {
+                    for (i = 0; i < Bing._cuDeferred.length; ++i) {
                         Bing._cuDeferred[i].resolve(Bing._cu);
                     }
                 }, true);
@@ -1126,7 +1126,7 @@ var Bing;
             if (Bing._window.naclNotInstalled === true) {
                 return;
             }
-            try  {
+            try {
                 this._module.postMessage(arg);
             } catch (e) {
                 if (Bing._window.chrome.runtime.lastError) {
@@ -1160,7 +1160,7 @@ var Bing;
         };
         NaclClient.prototype.connect = function (destination, output, input) {
             this.postMessage([
-                "connect", 
+                "connect",
                 destination.context.sampleRate
             ]);
         };
@@ -1176,7 +1176,7 @@ var Bing;
             set: function (prefs) {
                 this._preferences = prefs;
                 this.postMessage([
-                    "setPreferences", 
+                    "setPreferences",
                     prefs
                 ]);
             },
@@ -1187,16 +1187,16 @@ var Bing;
         };
         NaclClient.prototype.audioprocess = function (buffer) {
             this.postMessage([
-                "audioprocess", 
-                buffer.getChannelData(0), 
+                "audioprocess",
+                buffer.getChannelData(0),
                 buffer
             ]);
         };
         NaclClient.prototype.tts = function (text, contentType, outputFormat) {
             this.postMessage([
-                "tts", 
-                text, 
-                contentType, 
+                "tts",
+                text,
+                contentType,
                 outputFormat
             ]);
             if (this.onttsstart) {
@@ -1210,7 +1210,7 @@ var Bing;
         };
         return NaclClient;
     })();
-    Bing.NaclClient = NaclClient;    
+    Bing.NaclClient = NaclClient;
     function shouldCreateHttp() {
         if (Platform.isEdge()) {
             return true;
@@ -1234,7 +1234,7 @@ var Bing;
                     } else {
                         Bing._cu = new NaclClient();
                     }
-                    for(var i = 0; i < Bing._cuDeferred.length; ++i) {
+                    for (var i = 0; i < Bing._cuDeferred.length; ++i) {
                         Bing._cuDeferred[i].resolve(Bing._cu);
                     }
                 });
@@ -1247,7 +1247,7 @@ var Bing;
                 npPlugin.setAttribute("style", "width:0;height:0");
                 promise.done(function () {
                     window.document.body.appendChild(npPlugin);
-                    try  {
+                    try {
                         (npPlugin)();
                         Bing._cu = npPlugin;
                         (Bing._cu).origin = window.window.location.href;
@@ -1255,7 +1255,7 @@ var Bing;
                     } catch (e) {
                         Bing._cu = new HttpClient();
                     }
-                    for(var i = 0; i < Bing._cuDeferred.length; ++i) {
+                    for (var i = 0; i < Bing._cuDeferred.length; ++i) {
                         Bing._cuDeferred[i].resolve(Bing._cu);
                     }
                 });
@@ -1391,7 +1391,7 @@ var Bing;
         };
         return WebAudioSource;
     })();
-    Bing.WebAudioSource = WebAudioSource;    
+    Bing.WebAudioSource = WebAudioSource;
     var ArrayBufferSource = (function () {
         function ArrayBufferSource(context) {
             this.numberOfInputs = 1;
@@ -1476,7 +1476,7 @@ var Bing;
         };
         return ArrayBufferSource;
     })();
-    Bing.ArrayBufferSource = ArrayBufferSource;    
+    Bing.ArrayBufferSource = ArrayBufferSource;
     function SpeechMain() {
         var mediaNav = navigator;
         var acWindow = window;
